@@ -3,8 +3,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               stage('Checkout') {
-               steps {
                      git url: 'https://github.com/SaiRamya15/gradle-githubactions.git', branch: 'main'
     }
 }
