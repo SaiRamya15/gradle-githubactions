@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+
+    tools {
+         'Gradle 8.14-rc-3' 
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+               git branch: "${env.BRANCH_NAME}", 
+                credentialsId: 'd24121e7-c5e6-413f-a8c4-890f7eeee1fc', 
+                url:'https://github.com/SaiRamya15/gradle-githubactions.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building the project with Gradle"
+                bat './gradlew clean build' // use 'gradle build' if not using wrapper
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running tests"
+                bat './gradlew test'
+            }
+
+            post {
+                always {
+                    junit '**/build/test-results/test/*.xml'
+                }
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Build succeeded!"
+        }
+        failure {
+            echo "Build failed!"
+        }
+    }
+}
