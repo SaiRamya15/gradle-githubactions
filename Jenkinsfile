@@ -3,9 +3,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               git branch: "${env.BRANCH_NAME}", 
-                credentialsId: 'd24121e7-c5e6-413f-a8c4-890f7eeee1fc', 
-                url:'https://github.com/SaiRamya15/gradle-githubactions.git'
+               stage('Checkout') {
+               steps {
+                     git url: 'https://github.com/SaiRamya15/gradle-githubactions.git', branch: 'main'
+    }
+}
+
             }
         }
 
