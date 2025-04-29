@@ -1,19 +1,17 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                     git url: 'https://github.com/SaiRamya15/gradle-githubactions.git', branch: 'main'
-    }
-}
-
+                git url: 'https://github.com/SaiRamya15/gradle-githubactions.git', branch: 'main'
             }
         }
 
         stage('Build') {
             steps {
                 echo "Building the project with Gradle"
-                bat './gradlew clean build' // use 'gradle build' if not using wrapper
+                bat './gradlew clean build'  // Use 'sh' instead of 'bat' on Linux agents
             }
         }
 
@@ -22,7 +20,6 @@ pipeline {
                 echo "Running tests"
                 bat './gradlew test'
             }
-
             post {
                 always {
                     junit '**/build/test-results/test/*.xml'
@@ -35,7 +32,7 @@ pipeline {
                 archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
             }
         }
-    
+    }
 
     post {
         success {
@@ -45,4 +42,4 @@ pipeline {
             echo "Build failed!"
         }
     }
-
+}
