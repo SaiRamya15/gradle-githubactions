@@ -15,17 +15,17 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                echo "Running tests"
-                bat './gradlew test'
-            }
-            post {
-                always {
-                    junit '**/build/test-results/test/*.xml'
-                }
-            }
+       stage('Test') {
+    steps {
+        echo "Running tests"
+        bat './gradlew test' // or sh './gradlew test' on Linux
+    }
+    post {
+        always {
+            junit '**/build/test-results/test/*.xml'
         }
+    }
+}
 
         stage('Archive Artifacts') {
             steps {
