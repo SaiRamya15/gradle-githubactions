@@ -4,24 +4,21 @@ phases:
   install:
     runtime-versions:
       java: corretto17
-    commands:
-      - echo Installing dependencies...
-      - chmod +x gradle-githubactions/gradlew
+
   pre_build:
     commands:
       - echo Cloning repository...
       - git clone https://github.com/SaiRamya15/gradle-githubactions.git
-      - cd gradle-githubactions
+
   build:
     commands:
       - echo Building the project with Gradle...
+      - cd gradle-githubactions
+      - chmod +x gradlew
       - ./gradlew clean build
-  post_build:
-    commands:
-      - echo Running the jar file...
+      - echo Running the JAR file...
       - java -jar build/libs/gradle-githubactions-demo-1.0-SNAPSHOT.jar
 
 artifacts:
   files:
-    - build/libs/*.jar
-  base-directory: gradle-githubactions
+    - gradle-githubactions/build/libs/*.jar
