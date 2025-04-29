@@ -17,24 +17,17 @@ pipeline {
 
       stage('Run Jar') {
             steps {
-                bat 'java -jar build\\libs\\gradle-githubactions-demo-1.0-SNAPSHOT.jar'
+                bat 'java -jar build\libs\gradle-githubactions-demo-1.0-SNAPSHOT.jar'
 
 
     }
   
       }
-}
-}
-
-
-
-        stage('Archive Artifacts') {
+    stage('Archive Artifacts') {
             steps {
                 archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
             }
         }
-    
-
     post {
         success {
             echo "Build succeeded!"
@@ -43,4 +36,6 @@ pipeline {
             echo "Build failed!"
         }
     }
+    }
+}
 
