@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building the project with Gradle"
-                bat './gradlew clean build'  // Use 'sh' instead of 'bat' on Linux agents
+                bat './gradlew.bat clean build'  // Use 'sh' instead of 'bat' on Linux agents
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
       }
     stage('Archive Artifacts') {
             steps {
-                archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
             }
         }
     }
