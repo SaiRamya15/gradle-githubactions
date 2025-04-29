@@ -11,5 +11,9 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+    useJUnitPlatform() // If using JUnit 5
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
+
