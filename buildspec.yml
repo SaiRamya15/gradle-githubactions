@@ -17,7 +17,7 @@ phases:
       - chmod +x gradlew
       - ./gradlew clean build
       - echo Running the JAR file...
-      - java -jar build/libs/gradle-githubactions-demo-1.0-SNAPSHOT.jar
+      - java -jar build/libs/gradle-githubactions-demo-1.0-SNAPSHOT-17.0.5.jar
 
 artifacts:
   files:
