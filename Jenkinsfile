@@ -15,16 +15,15 @@ pipeline {
             }
         }
 
-      stage('Test') {
+      stage('output') {
     steps {
-        bat 'gradlew.bat test'
+        bat 'java -jar gradle-githubactions-demo.jar'
     }
-    post {
-        always {
-            junit 'build/test-results/test/*.xml'
-        }
-    }
+  
+      }
 }
+}
+
 
 
         stage('Archive Artifacts') {
