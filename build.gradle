@@ -1,19 +1,33 @@
 plugins {
     id 'java'
+    id 'application'  // For running the application with gradle run
 }
+
+group = 'com.example'
+version = '"17.0.5"'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    testImplementation 'junit:junit:4.13.2'
 }
 
-test {
-    useJUnitPlatform() // If using JUnit 5
-    testLogging {
-        events "passed", "skipped", "failed"
+application {
+    mainClass = 'com.example.App'  // Main class entry point
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.example.App'  // This sets the entry point for the JAR
+        )
     }
+    from sourceSets.main.output  // Ensures all compiled classes are included in the JAR
 }
-
