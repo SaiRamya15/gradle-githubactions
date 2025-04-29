@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - echo Installing Gradle...
+      - curl -s https://get.sdkman.io | bash
+      - source "$HOME/.sdkman/bin/sdkman-init.sh"
+      - sdk install gradle
+  pre_build:
+    commands:
+      - echo Cloning repository...
+      - git clone https://github.com/SaiRamya15/gradle-githubactions.git
+      - cd gradle-githubactions
+  build:
+    commands:
+      - echo Building the project with Gradle...
+      - ./gradlew clean build
+  post_build:
+    commands:
+      - echo Running the jar file...
+      - java -jar build/libs/gradle-githubactions-demo-1.0-SNAPSHOT.jar
+
+artifacts:
+  files:
+    - build/libs/*.jar
+  base-directory: gradle-githubactions
