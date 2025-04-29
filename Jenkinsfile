@@ -17,9 +17,9 @@ pipeline {
 
       stage('output') {
     steps {
-        bat 'bat 'build/libs/gradle-githubactions-demo-1.0-SNAPSHOT.jar
-'
-'
+        bat 'build/libs/gradle-githubactions-demo-1.0-SNAPSHOT.jar'
+
+
     }
   
       }
