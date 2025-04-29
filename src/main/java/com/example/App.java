@@ -1,11 +1,7 @@
 package com.example;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class MainTest {
-    @Test
-    public void testMain() {
-        assertEquals(2, 1 + 1);
+public class App {
+    public static void main(String[] args) {
+        System.out.println("Hello from Gradle + GitHub Actions!");
     }
 }
