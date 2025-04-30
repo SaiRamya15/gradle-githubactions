@@ -4,11 +4,21 @@
   //install:
     //runtime-versions:
       //java: corretto17
-version: 0.2
+//version: 0.2
+//phases:
+  //install:
+    //commands:
+      //- chmod +x gradlew  # Make sure gradlew is executable
+      version: 0.2
 phases:
   install:
     commands:
-      - chmod +x gradlew  # Make sure gradlew is executable
+      - echo Installing dependencies...
+  build:
+    commands:
+      - chmod +x gradlew  # Ensure gradlew is executable
+      - ./gradlew build
+
   build:
     commands:
       - ./gradlew clean build  # Clean build before executing
