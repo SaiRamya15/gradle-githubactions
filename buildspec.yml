@@ -18,17 +18,30 @@
     //commands:
       //- chmod +x gradlew  # Ensure gradlew is executable
       //- ./gradlew build
+     // version: 0.2
+//phases:
+  //install:
+    //commands:
+      //- echo "Install Phase"
+      //- chmod +x gradlew
+  //build:
+    //commands:
+      //- echo "Build Phase"
+      //- ls -l  # List files with permissions to ensure gradlew is present and executable
+      //- ./gradlew build
       version: 0.2
 phases:
   install:
     commands:
       - echo "Install Phase"
-      - chmod +x gradlew
+      - ls -l  # List files and check permissions
+      - chmod +x gradlew  # Ensure gradlew is executable
   build:
     commands:
       - echo "Build Phase"
-      - ls -l  # List files with permissions to ensure gradlew is present and executable
+      - ls -l  # List files and check permissions again in the build phase
       - ./gradlew build
+
 
 
   build:
