@@ -22,7 +22,7 @@ phases:
       - echo Building the project with Gradle...
       - ./gradlew clean build
       - echo Running the JAR...
-      - java -jar build/libs/gradle-githubactions-demo-17.0.5-SNAPSHOT.jar
+      - java -jar build/libs/gradle-githubactions-demo-17.0.5.jar
 
 artifacts:
   files:
