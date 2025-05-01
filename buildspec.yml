@@ -1,67 +1,28 @@
-//version: 0.2
+version: 0.2
 
-//phases:
-  //install:
-    //runtime-versions:
-      //java: corretto17
-//version: 0.2
-//phases:
-  //install:
-    //commands:
-      //- chmod +x gradlew  # Make sure gradlew is executable
-     // version: 0.2
-//phases:
-  //install:
-    //commands:
-      //- echo Installing dependencies...
-  //build:
-    //commands:
-      //- chmod +x gradlew  # Ensure gradlew is executable
-      //- ./gradlew build
-     // version: 0.2
-//phases:
-  //install:
-    //commands:
-      //- echo "Install Phase"
-      //- chmod +x gradlew
-  //build:
-    //commands:
-      //- echo "Build Phase"
-      //- ls -l  # List files with permissions to ensure gradlew is present and executable
-      //- ./gradlew build
-      version: 0.2
 phases:
   install:
+    runtime-versions:
+      java: corretto17
     commands:
-      - echo "Install Phase"
-      - ls -l  # List files and check permissions
-      - chmod +x gradlew  # Ensure gradlew is executable
-  build:
-    commands:
-      - echo "Build Phase"
-      - ls -l  # List files and check permissions again in the build phase
-      - ./gradlew build
-
-
-
-  build:
-    commands:
-      - ./gradlew clean build  # Clean build before executing
-
+      - echo Installing dos2unix...
+      - yum install -y dos2unix
 
   pre_build:
     commands:
       - echo Cloning repository...
       - git clone https://github.com/SaiRamya15/gradle-githubactions.git
+      - cd gradle-githubactions
+      - echo Fixing gradlew line endings and permissions...
+      - dos2unix gradlew
+      - chmod +x gradlew
 
   build:
     commands:
       - echo Building the project with Gradle...
-      - cd gradle-githubactions
-      - chmod +x gradlew
       - ./gradlew clean build
-      - echo Running the JAR file...
-      - java -jar build/libs/gradle-githubactions-demo-1.0-SNAPSHOT-17.0.5.jar
+      - echo Running the JAR...
+      - java -jar build/libs/gradle-githubactions-demo-1.0-SNAPSHOT.jar
 
 artifacts:
   files:
